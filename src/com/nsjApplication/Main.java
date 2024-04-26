@@ -88,6 +88,10 @@ public class Main {
         Scanner input = new Scanner(System.in);
         double currentWeight;
         System.out.print("Enter current weight in kg: ");
+        if (!input.hasNextDouble()){
+            System.out.println("Invalid Input! Please Enter Number");
+            return askForCurrentWeight();
+        }
         currentWeight = input.nextDouble();
         return currentWeight;
     }
@@ -103,6 +107,10 @@ public class Main {
     private static int askForHoursOfPrivateCoachingPerWeek() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter hours of private coaching per week (Max is 5 | Min is 1) : ");
+        if (!input.hasNextInt()) {
+            System.out.println("Invalid input! Please enter number between 5 and 1 inclusive");
+            return askForHoursOfPrivateCoachingPerWeek();
+        }
         int hours = input.nextInt();
         if (hours > 5 || hours < 1) {
             System.out.println("Maximum is 5 hours and Minimum is 1 hour. Please enter again");
@@ -129,6 +137,10 @@ public class Main {
             System.out.printf("               CompetitionEntryFee - $22.00                %n");
             System.out.printf("-----------------------------------------------------------%n");
             System.out.print("Enter the number of competitions entered: ");
+            if (!input.hasNextInt()){
+                System.out.println("Invalid Input! Please enter the number!");
+                return askForCompetitionsEntered(athleteName,trainingPlan,currentWeight);
+            }
             competitionsEntered = input.nextInt();
         } else {
             System.out.println("Athlete " + athleteName + " is not qualified to enter competition.\n" +
@@ -175,6 +187,10 @@ public class Main {
                 "Enter 4 for Light-MiddleWeight\n" +
                 "Enter 5 for LightWeight\n" +
                 "Enter 6 for FlyWeight: ");
+        if (!input.hasNextInt()){
+            System.out.println("Invalid input! Please Enter 1 - 6");
+            return askForWeightCategory(currentWeight);
+        }
         int inputNum = input.nextInt();
         /* if current weight > 100 and weight category chosen is "HeavyWeight"
          * or current weight == 100 and weight category chosen is "Light-HeavyWeight"
@@ -283,6 +299,10 @@ public class Main {
             System.out.println("Enter 1 for Beginner\n" +
                     "Enter 2 for Intermediate\n" +
                     "Enter 3 for Elite");
+            if (!input.hasNextInt()) {
+                System.out.println("Invalid input! Please enter 1 or 2 or 3");
+                return askForTrainingPlan();
+            }
             inputNum = input.nextInt();
         } while (inputNum != 1 && inputNum != 2 && inputNum != 3);
         return trainingPlan.get(inputNum);
