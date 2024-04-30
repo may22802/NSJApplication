@@ -34,6 +34,11 @@ public class Main {
         String athleteName;
         System.out.print("Enter athlete name: ");
         athleteName = input.nextLine();
+        while (athleteName.isEmpty()){
+            System.out.println("The name can't be empty! Enter again");
+            System.out.print("Enter athlete name: ");
+            athleteName = input.nextLine();
+        }
         //true decides whether the athlete is old or new trainee
         Boolean trueValue = checkNameInTraineesList(athleteName.toLowerCase(), trainees);
         if (trueValue) {
@@ -124,10 +129,10 @@ public class Main {
      * only athlete at intermediate and elite and current weight > 66 can enter competitions
      * if not display why athlete is disqualified and return 0
      *
-     * @param athleteName
-     * @param trainingPlan
-     * @param currentWeight
-     * @return int 0, 1, 2, 3
+     * @param athleteName to display when is unqualified
+     * @param trainingPlan to know if the athlete is in which training plan
+     * @param currentWeight to know if the athlete is underweight or not
+     * @return the number of competitions entered or 0 if the athlete is unqualifiede
      */
     private static int askForCompetitionsEntered(String athleteName, String trainingPlan, double currentWeight) {
         int competitionsEntered;
